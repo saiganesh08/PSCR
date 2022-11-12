@@ -26,11 +26,18 @@ public class EmailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_EMAIL,new String[] { "apscr64@gmail.com","userpscr@gmail.com" });
 
-                intent.putExtra(Intent.EXTRA_SUBJECT,e2.getText().toString());
+                String subject = e2.getText().toString();
+                String email   = "userpscr@gmail.com";
+
+                if(subject.contains("road")) { email = "roadpscr@gmail.com"; }
+                else if(subject.contains(("water"))) { email = "waterpscr@gmail.com";}
+
+                intent.putExtra(Intent.EXTRA_EMAIL,new String[] { email });
+
+                intent.putExtra(Intent.EXTRA_SUBJECT,subject);
                 intent.putExtra(Intent.EXTRA_TEXT,e3.getText().toString());
-                
+
                 //intent.setType("message/rfc822");
                 intent.setPackage("com.google.android.gm");
                 //startActivity(Intent.createChooser(intent,"choose mail app:"));
